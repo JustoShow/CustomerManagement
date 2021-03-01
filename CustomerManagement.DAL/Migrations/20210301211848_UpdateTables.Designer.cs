@@ -4,14 +4,16 @@ using CustomerManagement.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerManagement.DAL.Migrations
 {
     [DbContext(typeof(CMDbContext))]
-    partial class CMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210301211848_UpdateTables")]
+    partial class UpdateTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,14 +4,16 @@ using CustomerManagement.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerManagement.DAL.Migrations
 {
     [DbContext(typeof(CMDbContext))]
-    partial class CMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210301205144_UpdateAddTables")]
+    partial class UpdateAddTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,7 @@ namespace CustomerManagement.DAL.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Customers","customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CustomerManagement.DAL.Models.Email", b =>
@@ -72,15 +74,12 @@ namespace CustomerManagement.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -93,7 +92,7 @@ namespace CustomerManagement.DAL.Migrations
 
                     b.HasIndex("CustomerID");
 
-                    b.ToTable("Emails","customer");
+                    b.ToTable("Emails");
                 });
 
             modelBuilder.Entity("CustomerManagement.DAL.Models.Phone", b =>
@@ -107,14 +106,13 @@ namespace CustomerManagement.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("EmailID");
 
-                    b.ToTable("Phones","customer");
+                    b.ToTable("Phone");
                 });
 
             modelBuilder.Entity("CustomerManagement.DAL.Models.Email", b =>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CustomerManagement.DAL.Models
 {
+    [Table("Customers", Schema = "customer")]
     public class Customer
     {
         public int ID { get; set; }

@@ -1,6 +1,45 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
+@if (Customers == null)
+{
+    <h1>Loading...</h1>
+}
+else
+{
+    <h1>Customer Email List</h1>
+    <MudElement HtmlTag="p">
+        Search Customer
+        <input type="text" @bind-value="searchCustomer" />
+        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Search" Size="Size.Small" OnClick="@(() => SearchCustomer(searchCustomer))" />
+        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Clear" Size="Size.Small" OnClick="@(() => ClearSearch())" />
+    </MudElement>
+    
+    <MudGrid Class="mt-2">
+        <MudItem lg="4">
+            <MudTable Items="@Customers" FixedHeader="true" Height="80vh" Hover="true">
+                @*<ColGroup>
+                    <col style="width:30rem;"/>
+                </ColGroup>*@
+                <HeaderContent>
+                    <MudTh><h2>Customers</h2></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Customer" @onclick="@(() => GetCustomerEmails(context.ID))">@context.Name</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+        <MudItem lg="4">
+            <MudTable Items="@Emails" FixedHeader="true" Height="80vh" Hover="true">
+                @*<ColGroup>
+                    <col style="width:30rem;" />
+                </ColGroup>*@
+                <HeaderContent>
+                    <MudTh><h2>Emails</h2></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Customer">@context.EmailAddress</MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+    </MudGrid>
+}

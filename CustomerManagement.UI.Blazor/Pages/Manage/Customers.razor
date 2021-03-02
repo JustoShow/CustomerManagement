@@ -1,0 +1,33 @@
+﻿@page "/manage/customers"
+
+<h3>Manage Customers</h3>
+
+<MudButton OnClick="OpenCustomerDialog" Variant="Variant.Filled" Color="Color.Primary">
+    Add Customer
+</MudButton>
+
+@if (!_hasCustomers && CustomerList == null)
+{
+    <p>No data to display.</p>
+}
+else if (_hasCustomers && CustomerList == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="mt-3">
+        <MudTable Items="@CustomerList" Hover="true" FixedHeader="true" Height="80vh">
+            <HeaderContent>
+                <MudTh>Customer</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Customer">@context.Name</MudTd>
+                <MudTd DataLabel="Actions">
+                    <MudButton OnClick="(() => OpenCustomerDialog(context.ID))" StartIcon="@Icons.Material.Filled.Edit">Edit</MudButton>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+    </div>
+}

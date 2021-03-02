@@ -1,0 +1,45 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudContainer>
+            <MudGrid>
+                <MudItem lg="12">
+                    <MudTextField @bind-Value="CustomerDetails.Name" Label="Company Name" Variant="Variant.Text" Required="true" RequiredError="Enter company name."></MudTextField>
+                </MudItem>
+            </MudGrid>
+            <MudElement HtmlTag="p" Class="mt-5">Company Address:</MudElement>
+            <MudGrid>
+                <MudItem lg="12">
+                    <MudTextField @bind-Value="CustomerDetails.Address" Label="Address" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="6">
+                    <MudTextField @bind-Value="CustomerDetails.City" Label="City" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="2">
+                    <MudTextField @bind-Value="CustomerDetails.State" Label="State" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="4">
+                    <MudTextField @bind-Value="CustomerDetails.ZipCode" Label="Zip" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+            </MudGrid>
+            <MudElement HtmlTag="p" Class="mt-5">Mailing Address:</MudElement>
+            <MudGrid>
+                <MudItem lg="12">
+                    <MudTextField @bind-Value="CustomerDetails.MailAddress" Label="Address" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="6">
+                    <MudTextField @bind-Value="CustomerDetails.MailCity" Label="City" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="2">
+                    <MudTextField @bind-Value="CustomerDetails.MailState" Label="State" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+                <MudItem lg="4">
+                    <MudTextField @bind-Value="CustomerDetails.MailZipCode" Label="Zip" Variant="Variant.Text"></MudTextField>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="@(() => Submit(CustomerDetails))">Ok</MudButton>
+    </DialogActions>
+</MudDialog>

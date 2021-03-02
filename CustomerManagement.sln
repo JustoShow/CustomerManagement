@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.DAL", "CustomerManagement.DAL\CustomerManagement.DAL.csproj", "{1D11C043-CBF5-47B2-9967-884D25D4320E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.UI.Blazor", "CustomerManagement.UI.Blazor\CustomerManagement.UI.Blazor.csproj", "{3A94D766-3A2C-4861-B184-57A0CC907384}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.UI.Blazor", "CustomerManagement.UI.Blazor\CustomerManagement.UI.Blazor.csproj", "{3A94D766-3A2C-4861-B184-57A0CC907384}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

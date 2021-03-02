@@ -10,6 +10,7 @@ namespace CustomerManagement.DAL.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+#nullable enable
         public string? Address { get; set; }
         public string? City { get; set; }
         public string? State { get; set; }
@@ -18,6 +19,10 @@ namespace CustomerManagement.DAL.Models
         public string? MailCity { get; set; }
         public string? MailState { get; set; }
         public string? MailZipCode { get; set; }
+        public string? Notes { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+#nullable disable
+        public DateTime CreatedDate { get; set; }
 
         public ICollection<Email> Emails { get; set; }
     }

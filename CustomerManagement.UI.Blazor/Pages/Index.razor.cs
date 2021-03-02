@@ -22,12 +22,7 @@ namespace CustomerManagement.UI.Blazor.Pages
         private List<Customer> Customers { get; set; }
         private List<Email> Emails { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
 
-            await LoadCustomers();
-            Emails = Customers[0].Emails.ToList();
-        }
 
         private async Task LoadCustomers()
         {

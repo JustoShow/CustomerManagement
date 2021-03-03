@@ -1,4 +1,5 @@
 ﻿@page "/manage/customers"
+@using CustomerManagement.DAL.Models
 
 <h3>Manage Customers</h3>
 
@@ -16,18 +17,40 @@ else if (_hasCustomers && CustomerList == null)
 }
 else
 {
-    <div class="mt-3">
-        <MudTable Items="@CustomerList" Hover="true" FixedHeader="true" Height="80vh">
-            <HeaderContent>
-                <MudTh>Customer</MudTh>
-                <MudTh>Actions</MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd DataLabel="Customer">@context.Name</MudTd>
-                <MudTd DataLabel="Actions">
-                    <MudButton OnClick="(() => OpenCustomerDialog(context.ID))" StartIcon="@Icons.Material.Filled.Edit">Edit</MudButton>
-                </MudTd>
-            </RowTemplate>
-        </MudTable>
-    </div>
+    <MudGrid Class="mt-3" Style="height:70vh;">
+        <MudItem lg="6" Style="height:100%;">
+            <MudTable Items="@CustomerList" Hover="true" FixedHeader="true" @bind-SelectedItem="selectedCustomer" Filter="new Func<Customer, bool>(FilterCustomer)">
+                <ToolBarContent>
+                    <MudText Typo="Typo.h6">Customer List</MudText>
+                    <MudToolBarSpacer />
+                    <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </ToolBarContent>
+                <HeaderContent>
+                    <MudTh>Customer</MudTh>
+                    <MudTh>Actions</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Customer">@context.Name</MudTd>
+                    <MudTd DataLabel="Actions">
+                        <MudButton OnClick="(() => OpenCustomerDialog(context.ID))" StartIcon="@Icons.Material.Filled.Edit">Edit</MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudItem>
+        <MudItem lg="4" Style="height:100%;">
+            <MudCard>
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">@selectedCustomer?.Name Details</MudText>
+                    <MudElement HtmlTag="hr"></MudElement>
+                    <MudElement HtmlTag="b">Address:</MudElement>
+                    <MudElement HtmlTag="p">@selectedCustomer?.FullAddress</MudElement>
+                    <MudElement HtmlTag="b">Mailing Address:</MudElement>
+                    <MudElement HtmlTag="p">@selectedCustomer?.FullMailAddress</MudElement>
+                    <MudElement HtmlTag="b">Notes:</MudElement>
+                    <MudElement HtmlTag="p">@selectedCustomer?.Notes</MudElement>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+
 }

@@ -25,5 +25,21 @@ namespace CustomerManagement.DAL.Models
         public DateTime CreatedDate { get; set; }
 
         public ICollection<Email> Emails { get; set; }
+
+        public string FullAddress 
+        {
+            get
+            {
+                return $"{Address} {City}, {State} {ZipCode}";
+            }
+        }
+
+        public string FullMailAddress
+        {
+            get
+            {
+                return $"{MailAddress}\n{MailCity}, {MailState} {MailZipCode}";
+            }
+        }
     }
 }

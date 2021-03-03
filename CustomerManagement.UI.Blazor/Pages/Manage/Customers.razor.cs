@@ -17,7 +17,9 @@ namespace CustomerManagement.UI.Blazor.Pages.Manage
         [Inject]
         private IDialogService DialogService { get; set; }
         private List<Customer> CustomerList { get; set; }
-
+        private Customer CustomerDetails { get; set; } = new Customer();
+        private string searchString = "";
+        private Customer selectedCustomer = null;
         private bool _hasCustomers = false;
 
         protected override async Task OnInitializedAsync()
@@ -41,7 +43,7 @@ namespace CustomerManagement.UI.Blazor.Pages.Manage
         private async Task OpenCustomerDialog()
         {
             var dialog = DialogService.Show<CustomersDialog>("Add Customer", options);
-            
+
             var result = await dialog.Result;
 
             if (!result.Cancelled)
@@ -67,6 +69,31 @@ namespace CustomerManagement.UI.Blazor.Pages.Manage
                 // Reload after added
                 await LoadCustomersAsync();
             }
+        }
+
+        public void SelectedCustomer(int id)
+        {
+            CustomerDetails = CustomerList[CustomerList.FindIndex(c => c.ID == id)];
+        }
+
+        private bool FilterCustomer(Customer customer)
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                return true;
+            }
+
+            if (customer.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if ($"{customer.Name}".Contains(searchString))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

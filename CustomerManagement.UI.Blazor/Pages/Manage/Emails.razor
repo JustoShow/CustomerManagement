@@ -1,0 +1,21 @@
+﻿@page "/manage/emails"
+
+<h3>Emails</h3>
+
+@if (CustomerList == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <MudSelect T="int" Label="Customer" Variant="Variant.Outlined" ValueChanged="@((e) => LoadEmailsAsync(e))">
+        <MudSelectItem Value="0">Select a customer</MudSelectItem>
+        @foreach (var customer in CustomerList)
+        {
+            <MudSelectItem T="int" Value="@customer.ID">@customer.Name</MudSelectItem>
+        }
+    </MudSelect>
+    <MudButton Class="my-3" OnClick="OpenEmailDialog" Variant="Variant.Filled" Color="Color.Primary">
+        Add Customer
+    </MudButton>
+}
